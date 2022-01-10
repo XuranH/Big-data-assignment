@@ -10,7 +10,7 @@ Original file is located at
 import reprlib
 import re
 import nltk
-from nltk import bigrams
+from nltk import ngrams
 
 RE_WORD = re.compile('\w+')
 
@@ -26,9 +26,9 @@ class Sentence :
     def __iter__(self):
       return Word(self.words)
 
-    def get_next_bigrams(self):
-      Bigrams = bigrams(self.text)
-      return Bigrams
+    def get_next_bigrams(sentence):
+      Bigrams = ngrams(nltk.word_tokenize(sentence),2)
+      return [' '.join(grams) for grams in Bigrams]
 
 class Word :
     def __init__(self,words):
